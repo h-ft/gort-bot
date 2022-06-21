@@ -6,11 +6,11 @@ import (
 	"strings"
 	"syscall"
 
-	"main/commands"
+	"github.com/h-ft/gort-bot/commands"
 
 	"github.com/bwmarrin/discordgo"
+	"github.com/h-ft/gort-bot/config"
 	"github.com/sirupsen/logrus"
-	"main.go/config"
 )
 
 func Init(cfg *config.Config) error {
@@ -54,7 +54,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if strings.HasPrefix(m.Content, "?") {
 		command := strings.Split(m.Content[1:len(m.Content)], " ")
 		name := strings.ToLower(command[0])
-		commands.RunCommand(name, s, m)
+		commands.Run(name, s, m)
 		return
 	}
 }
