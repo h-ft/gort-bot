@@ -15,6 +15,7 @@ import (
 
 func Init(cfg *config.Config) error {
 	token := cfg.DiscordToken
+	commands.RegisterCommands()
 
 	logrus.Infoln("Initializing bot ...")
 	bot, err := discordgo.New("Bot " + token)
